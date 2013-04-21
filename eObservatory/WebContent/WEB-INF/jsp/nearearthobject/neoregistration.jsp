@@ -424,7 +424,7 @@
 		});
 		
 		$('#frmFileUpload').fileupload('option', {
-			maxFileSize: 100000,
+			maxFileSize: 100000000,
 			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
 			process: [
 				{
