@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="defaultTemplate" template="/WEB-INF/jsp/tiles/template.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
+    </definition>
+    
+    <definition name="loginTemplate" template="/WEB-INF/jsp/tiles/logintemplate.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/loginheader.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
+    </definition>
+    
+    <definition name="ajaxTemplate" template="/WEB-INF/jsp/tiles/ajax.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <definition name="authentication/login" extends="loginTemplate">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="content" value="/WEB-INF/jsp/authentication/login.jsp" />
+    </definition>
+
+    <definition name="index" extends="defaultTemplate">
+        <put-attribute name="title" value="E-Observatory" />
+        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    
+    <definition name="user/preparesignup" extends="loginTemplate">
+        <put-attribute name="title" value="Sign Up" />
+        <put-attribute name="content" value="/WEB-INF/jsp/user/preparesignup.jsp" />
+    </definition>
+    
+    <!-- <definition name="user/userlist" extends="defaultTemplate">
+        <put-attribute name="title" value="Users List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/user/userlist.jsp" />
+    </definition> -->
+
+    <definition name="nearearthobject/listdisplay" extends="defaultTemplate">
+        <put-attribute name="title" value="NEO Registry" />
+        <put-attribute name="content" value="/WEB-INF/jsp/nearearthobject/listdisplay.jsp" />
+    </definition>
+    
+    <definition name="nearearthobject/listedit" extends="defaultTemplate">
+        <put-attribute name="title" value="NEO Registry" />
+        <put-attribute name="content" value="/WEB-INF/jsp/nearearthobject/listedit.jsp" />
+    </definition>
+    
+    <definition name="nearearthobject/neoview" extends="defaultTemplate">
+        <put-attribute name="title" value="NEO View" />
+        <put-attribute name="content" value="/WEB-INF/jsp/nearearthobject/neoview.jsp" />
+    </definition>
+    
+    <definition name="nearearthobject/neoregistration" extends="ajaxTemplate">
+        <put-attribute name="title" value="NEO View" />
+        <put-attribute name="content" value="/WEB-INF/jsp/nearearthobject/neoregistration.jsp" />
+    </definition>
+    
+    <definition name="attachment/imagemanager" extends="ajaxTemplate">
+        <put-attribute name="title" value="NEO View" />
+        <put-attribute name="content" value="/WEB-INF/jsp/attachment/imagemanager.jsp" />
+    </definition>
+    
+    <!--  <definition name="flexTemplate" template="/WEB-INF/jsp/tiles/flex/template.jsp">
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <definition name="error403" extends="defaultTemplate">
+        <put-attribute name="title" value="Not Authorized" />
+        <put-attribute name="content" value="/WEB-INF/jsp/error/error403.jsp" />
+    </definition>
+
+    <definition name="error404" extends="defaultTemplate">
+        <put-attribute name="title" value="Page Not Found" />
+        <put-attribute name="content" value="/WEB-INF/jsp/error/error404.jsp" />
+    </definition>
+
+    <definition name="uncaughtError" extends="defaultTemplate">
+        <put-attribute name="title" value="Error" />
+        <put-attribute name="content" value="/WEB-INF/jsp/error/uncaughtError.jsp" />
+    </definition>
+
+    <definition name="error500" extends="defaultTemplate">
+        <put-attribute name="title" value="Error" />
+        <put-attribute name="content" value="/WEB-INF/jsp/error/error500.jsp" />
+    </definition>
+
+    <definition name="loginTemplate" template="/WEB-INF/jsp/loginTemplate.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <definition name="login" extends="loginTemplate">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="content" value="/WEB-INF/jsp/authentication/login.jsp" />
+    </definition>
+
+    <definition name="index" extends="defaultTemplate">
+        <put-attribute name="title" value="Correspondence" />
+        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+
+    <definition name="flex" extends="flexTemplate">
+        <put-attribute name="content" value="/WEB-INF/jsp/flex/index.jsp" />
+    </definition>
+
+    <definition name="documentformat" extends="defaultTemplate">
+        <put-attribute name="title" value="Document Format Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/documentformat/index.jsp" />
+    </definition>
+
+    <definition name="documenttype" extends="defaultTemplate">
+        <put-attribute name="title" value="Document Type Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/documenttype/index.jsp" />
+    </definition>
+
+    <definition name="user" extends="defaultTemplate">
+        <put-attribute name="title" value="User Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/user/index.jsp" />
+    </definition>
+
+    <definition name="role" extends="defaultTemplate">
+        <put-attribute name="title" value="Role Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/role/index.jsp" />
+    </definition>
+
+    <definition name="location" extends="defaultTemplate">
+        <put-attribute name="title" value="Location Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/location/index.jsp" />
+    </definition>
+
+    <definition name="company" extends="defaultTemplate">
+        <put-attribute name="title" value="Company Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/company/index.jsp" />
+    </definition>
+
+    <definition name="functionalrole" extends="defaultTemplate">
+        <put-attribute name="title" value="Functional Role Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/functionalRole/index.jsp" />
+    </definition>
+
+    <definition name="actor" extends="defaultTemplate">
+        <put-attribute name="title" value="Actor Registration" />
+        <put-attribute name="content" value="/WEB-INF/jsp/actor/index.jsp" />
+    </definition>-->
+</tiles-definitions>
