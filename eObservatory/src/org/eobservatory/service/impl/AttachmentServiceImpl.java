@@ -47,6 +47,12 @@ public class AttachmentServiceImpl implements AttachmentService {
 	@Override
 	public GridFSDBFile getFileByAttachmentId(String id) {
 		Attachment attachment = attachmentDao.find(id);
+		
+		if (attachment == null)
+		{
+			return null;
+		}
+		
 		return gridFs.findOne(new ObjectId(attachment.getFileId())); 
 	}
 

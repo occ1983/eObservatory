@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/jquery.dataTables.css" />" />
         <link rel="stylesheet" href="<c:url value="/resources/css/ui.jqgrid.css" />" />
         <link rel="stylesheet" href="<c:url value="/resources/css/jquery.fileupload-ui.css" />" />
+        <link rel="stylesheet" href="<c:url value="/resources/css/galleria.classic.css" />" />
         
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js" />"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js" />"></script>
@@ -29,6 +30,7 @@
         <script type="text/javascript" src="<c:url value="/resources/js/jquery.fileupload-fp.js" />"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/jquery.fileupload-ui.js" />"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/jquery.iframe-transport.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/galleria-1.2.9.min.js" />"></script>
         
         <script type="text/javascript">
             var userName = "<security:authentication property="principal.username" />";

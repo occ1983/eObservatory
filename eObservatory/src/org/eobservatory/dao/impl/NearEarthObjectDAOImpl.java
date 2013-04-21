@@ -59,6 +59,7 @@ public class NearEarthObjectDAOImpl implements NearEarthObjectDAO {
 
 	@Override
 	public void save(NearEarthObject nearEarthObject) {
+		nearEarthObject.setAttachmentObjects(null);
 		mongoTemplate.save(nearEarthObject);
 	}
 

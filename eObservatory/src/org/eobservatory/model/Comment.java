@@ -2,7 +2,9 @@ package org.eobservatory.model;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.eobservatory.util.AppDateDeserializer;
 import org.eobservatory.util.AppDateSerializer;
 
 public class Comment {
@@ -28,6 +30,8 @@ public class Comment {
 	public Date getCommentDate() {
 		return commentDate;
 	}
+	
+	@JsonDeserialize(using = AppDateDeserializer.class)
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}

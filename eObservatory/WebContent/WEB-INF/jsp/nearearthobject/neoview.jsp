@@ -2,17 +2,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+    Copyright 2013 Oscar Contreras Carrasco
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License. 
+   
+   =======================================================================
+ 
+ 	The view intended for NEO views and comments
+ 	it allows to show observation records, attachments and a nice image gallery
+ -->
 <style type="text/css">
 	.datablock
 	{
 		border: outset; 
 		border-width: 2px; 
-		border-radius: 5px
+		border-radius: 5px;
+		background-color: #bbb;
+		padding: 10px;
+		color: #000;
+	}
+	#imgGallery
+	{
+		width: 700px; height: 400px; background: #000
 	}
 </style>
 <script type="text/javascript">
 	var nearEarthObject;
 	var typing;
+	Galleria.loadTheme(rootUrl + 'resources/js/galleria.classic.min.js');
+
+	function showGallery()
+	{
+		$('#dlgGallery').dialog('open');
+		Galleria.run('#imgGallery');
+	}
 
 	function addComment()
 	{
@@ -90,6 +124,7 @@
 							$('#sNeoV').html(result.v);
 							$('#sNeoH').html(result.h);
 							$('#sNeoArc').html(result.arc);
+							$('#sNeoReportedBy').html(result.userId);
 
 							if ($('#lstViewCategories').length > 0) {
 								$('#lstViewCategories').trigger('reloadGrid');
@@ -149,6 +184,8 @@
 								var ids = $('#lstViewAttachments').jqGrid(
 										'getDataIDs'), i;
 
+								$('#imgGallery').html('');
+
 								for (i = 0; i < ids.length; i++) {
 									$('#lstViewAttachments')
 											.jqGrid(
@@ -164,13 +201,17 @@
 																+ ids[i]
 																+ '") />'
 													});
+
+									$('#imgGallery').append('<img src="'
+										+ rootUrl
+										+ 'attachment/getfilebyattachmentid?id='
+										+ ids[i]
+										+ '" width=50px height=40px />');
 								}
+
 							}
 						}
 					});
-		} else {
-			//firstTimeLoading = false;
-			//$('#txtNeoTitle').focus();
 		}
 	}
 
@@ -178,12 +219,13 @@
 		$('#dlgImageManager').dialog({title: 'Image Manager', modal: true, width: 800, height: 600, resizable: false, autoOpen: false});
 		loadNeoInformation();
 
+		$('#dlgGallery').dialog({title: 'Gallery', modal: true, width: 730, height: 460, resizable: false, autoOpen: false});
+	
 		$('#lstViewObservations').jqGrid(
 				{
 					datatype : 'local',
 					width : 400,
 					height : 80,
-					toolbar : [ true, 'top' ],
 					colNames : [ '', 'Longitude', 'Latitude', 'Altitude', 'V',
 							'H', 'Arc' ],
 					colModel : [ {
@@ -250,19 +292,7 @@
 						repeatitems : false,
 						id : "categoryId"
 					}
-				/*,
-					         loadComplete: function()
-					         {
-						         var ids = $('#lstObservations').jqGrid('getDataIDs'), i;
-
-						         for (i = ids.length - 1; i >= 0; i--)
-							     {
-								     $('#lstObservations').editRow(ids[i]);
-								 }
-						     }*/
 				});
-
-		//$('#t_lstViewObservations').html('<input id="btnObsAdd" type="button" onclick="addObservation()" value="Add Observation" />&nbsp;<input id="btnObsDel" type="button" onclick="deleteSelectedObservation()" value="Delete" />');
 
 		$('#lstViewAttachments').jqGrid({
 			datatype : 'local',
@@ -335,6 +365,14 @@
 			     		</td>
 			     		<td>
 			     			<span id="sNeoDiscoveryDate"></span>
+			     		</td>
+			     	</tr>
+			     	<tr>
+			     		<td>
+			     			Reported by:
+			     		</td>
+			     		<td>
+			     			<span id="sNeoReportedBy"></span>
 			     		</td>
 			     	</tr>
 			     	<tr>
@@ -481,4 +519,10 @@
      <div style="text-align: right">
      	<a href="<c:url value="/nearearthobject/listdisplay" />">Return to List</a>
      </div>
+     
+     <div id="dlgGallery">
+     	<div id="imgGallery">
+     	</div>
+     </div>
+     
 </div>
