@@ -334,7 +334,7 @@
 			     			Discovery date:
 			     		</td>
 			     		<td>
-			     			<span id="sDiscoveryDate"></span>
+			     			<span id="sNeoDiscoveryDate"></span>
 			     		</td>
 			     	</tr>
 			     	<tr>

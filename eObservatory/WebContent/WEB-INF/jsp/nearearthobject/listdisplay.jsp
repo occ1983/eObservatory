@@ -36,6 +36,18 @@
 			autoOpen : false
 		});
 
+		$('#txtFromDate').datepicker({
+            showOn: "button",
+            buttonImage: rootUrl + "resources/images/calendar.gif",
+            buttonImageOnly: true
+        });
+
+		$('#txtToDate').datepicker({
+            showOn: "button",
+            buttonImage: rootUrl + "resources/images/calendar.gif",
+            buttonImageOnly: true
+        });
+
 		oTable = $('#lstNearEarthObject')
 				.dataTable(
 						{
@@ -72,6 +84,16 @@
 										bSortable : false
 									},
 									{
+										mDataProp : 'userId',
+										sTitle : 'Reported By',
+										bSortable : false
+									},
+									{
+										mDataProp : 'discoveryDate',
+										sTitle : 'Discovery Date',
+										bSortable : false
+									},
+									{
 										mDataProp : 'id',
 										sTitle : 'Operation.',
 										bSortable : false,
@@ -80,16 +102,19 @@
 										}
 									} ],
 							bServerSide : true,
+							bFilter: false,
+							bInfo: false,
+							bPaginate: false,
 							sAjaxSource : rootUrl + 'nearearthobject/list',
 							fnServerData : function(sSource, aoData, fnCallback) {
-
 								$.ajax({
 									url : sSource,
 									dataType : 'json',
 									type : 'POST',
 									contentType : 'application/json',
 									data : JSON.stringify({
-										userId : $('#txtUser').val()
+										userId : $('#txtUser').val(),
+										discoveryFrom: ($('#txtFromDate').val() != '') ? $('#txtFromDate').val() : null
 									}),
 									success : fnCallback
 								});
@@ -101,11 +126,20 @@
     <table>
     	<tr>
     		<td>
-    			By User
+    			Discoveries By User
     		</td>
     		<td>
     			<input id="txtUser" type="text" />    		
     	    </td>
+    	</tr>
+    	<tr>
+    		<td>
+    			Discovery from date
+    		</td>
+    		<td>
+    			<input id="txtFromDate" type="text" />
+    		</td>
+    		
     	</tr>
     </table>
     

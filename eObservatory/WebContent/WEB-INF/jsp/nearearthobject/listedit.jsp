@@ -9,8 +9,6 @@
 		oTable.fnReloadAjax();
 	}
 
-	
-
 	function showNeoDialog(id) {
 		$('#neoEditContent').html('');
 
@@ -74,6 +72,11 @@
 										bSortable : false
 									},
 									{
+										mDataProp : 'discoveryDate',
+										sTitle : 'Discovery Date',
+										bSortable : false
+									},
+									{
 										mDataProp : 'id',
 										sTitle : 'Operation.',
 										bSortable : false,
@@ -83,6 +86,9 @@
 										}
 									} ],
 							bServerSide : true,
+							bFilter: false,
+							bInfo: false,
+							bPaginate: false,
 							sAjaxSource : rootUrl + 'nearearthobject/list',
 							fnServerData : function(sSource, aoData, fnCallback) {
 
@@ -101,19 +107,10 @@
 	});
 </script>
 <div>
-    <table>
-    	<tr>
-    		<td>
-    			By User
-    		</td>
-    		<td>
-    			<input id="txtUser" type="text" />    		
-    	    </td>
-    	</tr>
-    </table>
-    
+    <h1 style="color: #009">My NEO Reports</h1>
+    <br />
     <div>
-    	<input id="btSearch" type="button" value="Search" onclick="loadNeoList()" />
+    	
     	<input id="bReportNew" type="button" value="Report NEO" onclick="showNeoDialog()" />
     </div>
     

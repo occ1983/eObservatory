@@ -8,6 +8,7 @@ import org.eobservatory.util.NearEarthObjectFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Order;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +30,22 @@ public class NearEarthObjectDAOImpl implements NearEarthObjectDAO {
 		{
 			query.addCriteria(Criteria.where("userId").is(filter.getUserId()));
 		}
+		
+		if (filter.getDiscoveryFrom() != null)
+		{
+			query.addCriteria(Criteria.where("discoveryDate").gte(filter.getDiscoveryFrom()));
+			//query.addCriteria(Criteria.where("discoveryDate").lte(filter.getDiscoveryTo()));
+		}
+		
+		if (filter.getRowCount() != 0 && filter.getPageNumber() != 0)
+		{
+			query.limit(filter.getRowCount());
+			query.skip(filter.getPageNumber());
+		}
+		
+		System.out.println("Sorting...");
+		
+		query.sort().on("discoveryDate", Order.DESCENDING);
 		
 		return mongoTemplate.find(query, NearEarthObject.class);
 	}

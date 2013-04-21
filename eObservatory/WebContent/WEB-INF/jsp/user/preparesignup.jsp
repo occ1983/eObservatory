@@ -35,6 +35,8 @@
 	}
 </script>
 <div id="pnlRegistration">
+	<h1 style="color: #009">Sign Up</h1>
+	<br />
 	<table>
 		<tr>
 			<td>
