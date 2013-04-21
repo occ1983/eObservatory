@@ -2,7 +2,12 @@ package org.eobservatory.util;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 public class NearEarthObjectFilter {
+	private int pageNumber;
+	private int rowCount;
 	private String id;
 	private String userId;
 	private String description;
@@ -16,6 +21,10 @@ public class NearEarthObjectFilter {
 	private Double altitude;
 	private Double v;
 	private Double h;
+	private Date discoveryFrom;
+	private Date discoveryTo;
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -93,6 +102,38 @@ public class NearEarthObjectFilter {
 	}
 	public void setH(Double h) {
 		this.h = h;
+	}
+	
+	@JsonSerialize(using = AppDateSerializer.class)
+	public Date getDiscoveryFrom() {
+		return discoveryFrom;
+	}
+	
+	@JsonDeserialize(using = AppDateDeserializer.class)
+	public void setDiscoveryFrom(Date discoveryFrom) {
+		this.discoveryFrom = discoveryFrom;
+	}
+	
+	@JsonSerialize(using = AppDateSerializer.class)
+	public Date getDiscoveryTo() {
+		return discoveryTo;
+	}
+	
+	@JsonDeserialize(using = AppDateDeserializer.class)
+	public void setDiscoveryTo(Date discoveryTo) {
+		this.discoveryTo = discoveryTo;
+	}
+	public int getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public int getRowCount() {
+		return rowCount;
+	}
+	public void setRowCount(int rowCount) {
+		this.rowCount = rowCount;
 	}
 	
 }
